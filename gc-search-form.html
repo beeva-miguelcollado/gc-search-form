@@ -1,0 +1,64 @@
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-input-autocomplete-chips/paper-input-autocomplete-chips.html">
+<link rel="import" href="../paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="gc-search-form-styles.html">
+
+<!--
+`<gc-search-form>` description.
+
+Example:
+
+```html
+<gc-search-form></gc-search-form>
+```
+
+## Styling
+
+The following custom properties and mixins are available for styling:
+
+| Custom property | Description     | Default        |
+|:----------------|:----------------|:--------------:|
+| --gc-search-form-scope      | scope description | default value  |
+| --gc-search-form  | empty mixin     | {}             |
+
+@demo demo/index.html
+-->
+<dom-module id="gc-search-form">
+  <template>
+    <style include="gc-search-form-styles gc-search-form-shared-styles"></style>
+
+    <iron-ajax
+      auto
+      url="http://52.19.90.200:8795/skills"
+      handle-as="json"
+      last-response="{{_skills}}"
+      debounce-duration="300">
+    </iron-ajax>
+
+    <iron-ajax id="ironAjaxSend"
+      url="http://52.19.90.200:8795/employees"
+      method="POST"
+      handle-as="json"
+      content-type="application/json"
+      last-response="{{employees}}">
+    </iron-ajax>
+
+    <form>
+      <paper-input-autocomplete-chips id="input"
+        local-candidates="{{_skills}}"
+        selected-objects="{{_selectedSkills}}">
+      </paper-input-autocomplete-chips>
+
+      <paper-radio-group selected$="{{_searchType}}">
+        <paper-radio-button name="or">Alguna</paper-radio-button>
+        <paper-radio-button name="and">Todas</paper-radio-button>
+      </paper-radio-group>
+
+      <paper-button raised on-click="_sendSkills">Buscar</paper-button>
+    </form>
+
+  </template>
+  <script src="gc-search-form.js"></script>
+</dom-module>

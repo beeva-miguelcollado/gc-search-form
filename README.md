@@ -1,10 +1,10 @@
-# search-form
+# gc-search-form
 
 Your component description.
 
 Example:
 ```html
-<search-form></search-form>
+<gc-search-form></gc-search-form>
 ```
 
 ```
@@ -15,5 +15,5 @@ The following custom properties and mixins are available for styling:
 
 | Custom property | Description     | Default        |
 |:----------------|:----------------|:--------------:|
-| --search-form-scope      | scope description | default value  |
-| --search-form  | empty mixin     | {}             |
+| --gc-search-form-scope      | scope description | default value  |
+| --gc-search-form  | empty mixin     | {}             |
