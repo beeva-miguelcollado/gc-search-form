@@ -1,0 +1,55 @@
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-input-autocomplete-chips/paper-input-autocomplete-chips.html">
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="search-form-styles.html">
+
+<!--
+`<search-form>` description.
+
+Example:
+
+```html
+<search-form></search-form>
+```
+
+## Styling
+
+The following custom properties and mixins are available for styling:
+
+| Custom property | Description     | Default        |
+|:----------------|:----------------|:--------------:|
+| --search-form-scope      | scope description | default value  |
+| --search-form  | empty mixin     | {}             |
+
+@demo demo/index.html
+-->
+<dom-module id="search-form">
+  <template>
+    <style include="search-form-styles search-form-shared-styles"></style>
+
+    <iron-ajax
+      auto
+      url="http://52.19.90.200:8795/skills"
+      handle-as="json"
+      last-response="{{skills}}"
+      debounce-duration="300">
+    </iron-ajax>
+
+    <iron-ajax id="ironAjaxSend"
+      url="http://52.19.90.200:8795/skills"
+      mehtod="POST"
+      content-type="application/json">
+    </iron-ajax>
+
+    <form>
+      <paper-input-autocomplete-chips
+        local-candidates="{{skills}}"
+        selected-objects="[[selectedSkills]]">
+      </paper-input-autocomplete-chips>
+      <paper-button on-click="_sendSkills"></paper-button>
+    </form>
+
+    <content></content>
+  </template>
+  <script src="search-form.js"></script>
+</dom-module>

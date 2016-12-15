@@ -1,0 +1,33 @@
+<style is="custom-style">
+  html, body {
+    height: 100%;
+  }
+  body {
+    margin: 0;
+  }
+  .bind-input {
+    margin: 0 1rem 1rem;
+    padding: 0 .5rem;
+    @apply(--cells-input--base);
+  }
+
+
+  @media (max-width: 768px) {
+    body {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    *, *:before, *:after {
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hidden-mobile {
+      display: none !important;
+    }
+    cells-demo-mobile ::content .selectors {
+      display: none;
+    }
+  }
+</style>
